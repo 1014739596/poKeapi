@@ -1,0 +1,3 @@
+function Informativa(){
+    alert("Informativa")
+}
