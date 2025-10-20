@@ -8,32 +8,33 @@
 }
 
 :root {
-  --color-primary: #e63946;
-  --color-secondary: #ffcb05;
-  --color-bg: #f6f8fa;
+  --color-primary: #e3350d; /* rojo pokeball */
+  --color-secondary: #ffcb05; /* amarillo */
+  --color-bg: linear-gradient(135deg, #f0f4ff, #dbe9ff);
   --color-card: #ffffff;
   --color-text: #222;
-  --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  --radius: 12px;
+  --shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+  --radius: 16px;
   --transition: all 0.3s ease;
   --font-main: 'Poppins', 'Segoe UI', sans-serif;
 }
 
 /* ==========================
-   ESTILO GENERAL
+   BODY Y CONTENEDORES
 ========================== */
 body {
   font-family: var(--font-main);
-  background-color: var(--color-bg);
+  background: var(--color-bg);
   color: var(--color-text);
   display: flex;
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 /* ==========================
-   ENCABEZADO / NAVBAR
+   HEADER
 ========================== */
 header {
   width: 100%;
@@ -46,10 +47,14 @@ header {
 
 header h1 {
   font-size: 2rem;
-  letter-spacing: 1px;
-  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 15px;
 }
 
+/* ==========================
+   INPUT Y BOTÓN
+========================== */
 header input[type="text"] {
   padding: 10px 15px;
   border: none;
@@ -57,98 +62,140 @@ header input[type="text"] {
   outline: none;
   width: 60%;
   max-width: 280px;
-  margin-right: 8px;
+  margin-right: 10px;
   font-size: 1rem;
   transition: var(--transition);
 }
 
 header input[type="text"]:focus {
-  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.4);
 }
 
+/* 🔥 Botón estilo Pokébola */
 header button {
-  background-color: #fff;
+  background: radial-gradient(circle at 30% 30%, var(--color-secondary), #fff);
   color: var(--color-primary);
-  border: none;
+  border: 2px solid var(--color-primary);
   padding: 10px 18px;
-  border-radius: var(--radius);
+  border-radius: 50px;
   cursor: pointer;
-  font-weight: 600;
+  font-weight: 700;
+  text-transform: uppercase;
   transition: var(--transition);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
 }
 
 header button:hover {
-  background-color: var(--color-secondary);
-  color: #222;
-  transform: scale(1.05);
+  background: var(--color-primary);
+  color: #fff;
+  transform: translateY(-2px) scale(1.05);
 }
 
 /* ==========================
-   CONTENEDOR PRINCIPAL
+   MAIN Y TARJETA
 ========================== */
 main {
   flex: 1;
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  padding: 40px 20px;
   width: 100%;
+  padding: 40px 20px;
 }
 
-/* ==========================
-   TARJETA POKÉMON
-========================== */
+/* Contenedor del Pokémon */
 .card {
   background: var(--color-card);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   padding: 25px;
-  max-width: 480px;
-  width: 100%;
+  max-width: 420px;
+  width: 90%;
   text-align: center;
   transition: var(--transition);
   position: relative;
+  overflow: hidden;
+  animation: fadeIn 0.8s ease forwards;
 }
 
-.card:hover {
-  transform: translateY(-5px);
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Círculo decorativo tipo Pokébola detrás */
+.card::before {
+  content: '';
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: rgba(255, 203, 5, 0.25);
+  z-index: 0;
 }
 
 .card h2 {
   font-size: 1.6rem;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   color: var(--color-primary);
   text-transform: uppercase;
-  letter-spacing: 1px;
+  position: relative;
+  z-index: 2;
 }
 
 .pokemon-display {
-  margin-top: 20px;
+  position: relative;
+  z-index: 2;
 }
 
+/* Imagen centrada con sombra */
 .pokemon-display img {
-  width: 160px;
-  height: 160px;
+  width: 180px;
+  height: 180px;
   object-fit: contain;
-  filter: drop-shadow(0 5px 8px rgba(0, 0, 0, 0.2));
+  margin: 15px 0;
+  filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.25));
   transition: var(--transition);
 }
 
 .pokemon-display img:hover {
-  transform: scale(1.1);
+  transform: scale(1.1) rotate(-3deg);
 }
 
+/* Nombre del Pokémon */
 .pokemon-display h3 {
   font-size: 1.4rem;
-  margin: 12px 0;
+  margin-bottom: 8px;
   color: var(--color-primary);
   text-transform: capitalize;
+  letter-spacing: 1px;
 }
 
+/* Datos */
 .pokemon-display p {
   margin: 6px 0;
   font-size: 1rem;
+  background: rgba(240, 240, 240, 0.6);
+  border-radius: 8px;
+  padding: 6px;
 }
+
+/* ==========================
+   COLORES SEGÚN TIPO
+========================== */
+.pokemon-display[data-type*="fire"] h3 { color: #ff4500; }
+.pokemon-display[data-type*="water"] h3 { color: #0077be; }
+.pokemon-display[data-type*="grass"] h3 { color: #228b22; }
+.pokemon-display[data-type*="electric"] h3 { color: #f8d030; }
+.pokemon-display[data-type*="psychic"] h3 { color: #ff69b4; }
+.pokemon-display[data-type*="rock"] h3 { color: #b8a038; }
+.pokemon-display[data-type*="ice"] h3 { color: #98d8d8; }
+.pokemon-display[data-type*="dragon"] h3 { color: #7038f8; }
+.pokemon-display[data-type*="ghost"] h3 { color: #705898; }
+.pokemon-display[data-type*="dark"] h3 { color: #705848; }
+.pokemon-display[data-type*="fairy"] h3 { color: #f0b6bc; }
 
 /* ==========================
    FOOTER
@@ -174,7 +221,7 @@ footer a:hover {
 }
 
 /* ==========================
-   RESPONSIVE DESIGN
+   RESPONSIVE
 ========================== */
 @media (max-width: 600px) {
   header input[type="text"] {
@@ -195,7 +242,7 @@ footer a:hover {
   }
 
   .pokemon-display img {
-    width: 130px;
-    height: 130px;
+    width: 140px;
+    height: 140px;
   }
 }
