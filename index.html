@@ -1,38 +1,34 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
     <link rel="stylesheet" href="style.css">
-    <title>Pokeapi</title>
 </head>
 <body>
     <nav>
         <button onclick="Home()">Home</button>
         <button onclick="Informativa()">Informativa</button>
+        <button onclick="Capturados()">Capturados</button>
         <button onclick="Favoritos()">Favoritos</button>
-        <button onclick="capturados()">Capturados</button>
     </nav>
 
-
-
     <div id="root">
-        <!-- aqui se agrega lo que hagamos en js-->
+        <!-- aqui se agrega lo que hagamos en js -->
     </div>
+    <script src="paginas/conexion.js"></script>
+    <script src="paginas/home.js"></script>
+    <script src="paginas/detalle.js"></script>
+    <script src="paginas/favoritos.js"></script>
+    <script src="paginas/informativa.js"></script>
+    <script src="paginas/capturados.js"></script>
 
-    <script src="JS/conexion.js"></script>
-    <script src="JS/home.js"></script>
-    <script src="JS/original.js"></script>
-    <script src="JS/favoritos.js"></script>
-    <script src="JS/informativa.js"></script>
-    <script src="JS/pokemon.js"></script>
-    <script src="JS/capturados.js"></script>
 
     <script>
 
         document.addEventListener("DOMContentLoaded",General)
 
     </script>
-
+    
 </body>
 </html>
