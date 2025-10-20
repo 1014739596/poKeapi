@@ -1,5 +1,5 @@
 let pokemones = [];
-let totalPokes = 6;
+let totalPokes = 1025;
 
 // Conexión para obtener la lista de Pokémon
 async function conexionLista(filtrotipo) {
