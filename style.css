@@ -586,11 +586,12 @@ main {
   align-items: center;
   background: linear-gradient(90deg, #ff4757, #e84118);
   color: white;
-  padding: 10px 25px;
+  padding: 15px 40px; /* Aumentamos el padding para más aire */
   box-shadow: 0 4px 10px rgba(0,0,0,0.15);
   position: sticky;
   top: 0;
   z-index: 10;
+  gap: 40px; /* 🔥 Añade espacio horizontal entre logo y botones */
 }
 
 .nav-logo {
