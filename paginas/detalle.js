@@ -1,6 +1,5 @@
 var esFavorito = false;
 
-// Función para agregar o quitar un Pokémon de favoritos
 function toggleFavorito(paramid, paramname) {
   let favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
   let existe = favoritos.some(poke => poke.name === paramname);
@@ -32,7 +31,6 @@ async function Detalle(parametro) {
   favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
   esFavorito = favoritos.some(poke => poke.name === data.name);
 
-  // Tipos del Pokémon
   let tipoPoke = "";
   for (let i = 0; i < data.types.length; i++) {
     tipoPoke += `<span class="tipo">${data.types[i].type.name}</span>`;

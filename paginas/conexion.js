@@ -1,7 +1,6 @@
 let pokemones = [];
 let totalPokes = 1025;
 
-// Conexión para obtener la lista de Pokémon
 async function conexionLista(filtrotipo) {
 
   
@@ -22,7 +21,6 @@ async function conexionLista(filtrotipo) {
 
 }
 
-// Cargar todos los Pokémon al iniciar
 async function General() {
   if (pokemones.length === 0) {
     pokemones = await conexionLista("All");

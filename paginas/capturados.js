@@ -5,7 +5,6 @@ function Aleatorios(){
     console.log("----------------------------------")
     let pokesAleatorios = "";
     for (let i = 0; i < 4; i++) {
-        //let num = Math.floor(Math.random() * rango) + 1;
         let num = Math.floor(Math.random() * pokemones.length) + 1;
 
         pokesAleatorios += `
@@ -48,21 +47,16 @@ function Aleatorios(){
 function Capturados(){
     document.getElementById("root").innerHTML = ""
 
-    //crear aleatorios
     const capturaAleatorea = document.createElement("section");
     capturaAleatorea.classList.add("c-lista");
     capturaAleatorea.id = "nuevos"
 
-    //crear boton d aleatorios
     const boton = document.createElement("button");
     boton.textContent = "4 nuevos"
-    // Agregar el evento click para generar 4 nuevos pokes
     boton.addEventListener("click", () => {
         Aleatorios(); 
     });
 
-
-    //crear album
     const seccioncapturados = document.createElement("section");
     seccioncapturados.classList.add("c-lista");
 
@@ -85,12 +79,10 @@ function Capturados(){
     }
     seccioncapturados.innerHTML = misPokes;
 
-    //rangos y capturados
     let contador = document.createElement("p");
     contador.textContent = `${misNumeros.length} / ${totalPokes}`;
     contador.id = "contador"
 
-    //añadir al elemento
     document.getElementById("root").appendChild(contador)
     document.getElementById("root").appendChild(boton)
     document.getElementById("root").appendChild(capturaAleatorea)

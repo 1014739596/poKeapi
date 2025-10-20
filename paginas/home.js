@@ -43,7 +43,6 @@ function Home(filtro){
             buscadorfuncion(buscador.value);
     });
 
-    //contenedor filtro
     const tipos = [
         "normal", "fighting", "flying", "poison", "ground", "rock", "bug",
         "ghost", "steel", "fire", "water", "grass", "electric", "psychic", "ice",
@@ -57,24 +56,19 @@ function Home(filtro){
         const btn = document.createElement("button");
         btn.textContent = tipos[i];
         
-        // Agregar el evento click para filtrar por tipo
         btn.addEventListener("click", () => {
             FiltroConexion(tipos[i]); 
         });
 
-        // Agregar el botón al contenedor
         contenedorFiltro.appendChild(btn);
     }
 
-
-    //add contenedor lista
     const listaHTML = generarLista(pokemones);
     var contenedorLista = document.createElement("div");
     contenedorLista.classList.add("c-contenedor-lista"); 
     contenedorLista.id = "la-lista"; 
     contenedorLista.innerHTML = listaHTML;
 
-    //agregar contenedores
     root.appendChild(buscador);
     root.appendChild(contenedorFiltro);
     root.appendChild(contenedorLista);
