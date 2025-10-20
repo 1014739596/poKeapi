@@ -1,31 +1,29 @@
-* {
+*{
     margin: 0;
     box-sizing: border-box;
 }
 
-button {
+button{
     background-color: transparent;
     border: unset;
     cursor: pointer;
     margin: 0;
     transition: 0.5s;
 }
-
 /* lista */
-.c-lista,
-.c-contenedor-lista {
+.c-lista, .c-contenedor-lista{
     display: flex;
     gap: 10px;
     flex-wrap: wrap;
 }
 
-.c-lista button {
+.c-lista button{
     width: 100%;
     padding: 10px;
     background: rgb(223, 223, 223);
 }
 
-.c-lista-pokemon {
+.c-lista-pokemon{
     background-color: aliceblue;
     width: calc(50% - 5px);
     padding: 10px;
@@ -33,7 +31,7 @@ button {
 }
 
 /* navegacion */
-.c-nav {
+.c-nav{
     position: fixed;
     bottom: 0;
     left: 0;
@@ -46,17 +44,17 @@ button {
     gap: 10px;
 }
 
-.c-nav-item {
+.c-nav-item{
     width: calc(20% - 8px);
     background-color: red;
 }
-
-.c-nav-item:hover {
+.c-nav-item:hover{
     color: yellow;
 }
 
 /* mios */
-.c-unpoke {
+
+.c-unpoke{
     background-color: #171717;
     width: calc(25% - 7.5px);
     height: 85px;
@@ -69,7 +67,8 @@ button {
     flex-direction: column;
 }
 
-.c-mios-pokemon {
+
+.c-mios-pokemon{
     background-color: aliceblue;
     color: #171717
 }
