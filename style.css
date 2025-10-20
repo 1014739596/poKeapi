@@ -1,74 +1,148 @@
-*{
-    margin: 0;
-    box-sizing: border-box;
+/* -------------------- RESET GENERAL -------------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-button{
-    background-color: transparent;
-    border: unset;
-    cursor: pointer;
-    margin: 0;
-    transition: 0.5s;
-}
-/* lista */
-.c-lista, .c-contenedor-lista{
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
+/* -------------------- VARIABLES -------------------- */
+:root {
+  --color-bg: #f8f9fa;
+  --color-card: #ffffff;
+  --color-primary: #ff1c1c;
+  --color-secondary: #ffd700;
+  --color-text: #333;
+  --color-border: #ddd;
+  --shadow: 0 4px 10px rgba(0,0,0,0.1);
+  --radius: 12px;
+  --transition: 0.3s ease;
+  --font-main: 'Segoe UI', Tahoma, sans-serif;
 }
 
-.c-lista button{
+/* -------------------- ESTRUCTURA BASE -------------------- */
+body {
+  font-family: var(--font-main);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+header {
+  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+  color: white;
+  text-align: center;
+  width: 100%;
+  padding: 20px;
+  box-shadow: var(--shadow);
+}
+
+header h1 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+header input {
+  padding: 10px;
+  border: none;
+  border-radius: var(--radius);
+  outline: none;
+  width: 60%;
+  max-width: 300px;
+  margin-right: 10px;
+}
+
+header button {
+  background: white;
+  color: var(--color-primary);
+  border: none;
+  padding: 10px 20px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-weight: bold;
+  transition: var(--transition);
+}
+
+header button:hover {
+  background: var(--color-secondary);
+  color: var(--color-text);
+}
+
+main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  padding: 40px 20px;
+}
+
+/* -------------------- TARJETA DE POKÉMON -------------------- */
+.card {
+  background-color: var(--color-card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 20px;
+  width: 100%;
+  max-width: 500px;
+  text-align: center;
+  transition: var(--transition);
+}
+
+.card:hover {
+  transform: translateY(-3px);
+}
+
+.pokemon-display img {
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+  margin: 20px 0;
+}
+
+.pokemon-display h3 {
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+}
+
+.pokemon-display p {
+  margin: 5px 0;
+}
+
+/* -------------------- FOOTER -------------------- */
+footer {
+  background-color: var(--color-primary);
+  color: white;
+  width: 100%;
+  text-align: center;
+  padding: 15px;
+  font-size: 0.9rem;
+}
+
+footer a {
+  color: var(--color-secondary);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* -------------------- RESPONSIVE -------------------- */
+@media (max-width: 600px) {
+  header input {
     width: 100%;
-    padding: 10px;
-    background: rgb(223, 223, 223);
-}
+    margin-bottom: 10px;
+  }
 
-.c-lista-pokemon{
-    background-color: aliceblue;
-    width: calc(50% - 5px);
-    padding: 10px;
-    text-align: center;
-}
-
-/* navegacion */
-.c-nav{
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    background: silver;
+  header button {
     width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    padding: 10px 15px;
-    gap: 10px;
-}
+  }
 
-.c-nav-item{
-    width: calc(20% - 8px);
-    background-color: red;
-}
-.c-nav-item:hover{
-    color: yellow;
-}
-
-/* mios */
-
-.c-unpoke{
-    background-color: #171717;
-    width: calc(25% - 7.5px);
-    height: 85px;
-    padding: 10px;
-    text-align: center;
-    color: rgb(255, 255, 255);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-
-
-.c-mios-pokemon{
-    background-color: aliceblue;
-    color: #171717
+  main {
+    padding: 20px;
+  }
 }

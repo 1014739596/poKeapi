@@ -1,34 +1,31 @@
-<html lang="en">
+<!DOCTYPE html>
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PokeAPI Explorer</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <nav>
-        <button onclick="Home()">Home</button>
-        <button onclick="Informativa()">Informativa</button>
-        <button onclick="Capturados()">Capturados</button>
-        <button onclick="Favoritos()">Favoritos</button>
-    </nav>
+  <header>
+    <h1>PokeAPI Explorer</h1>
+    <input type="text" id="searchInput" placeholder="Buscar Pokémon...">
+    <button id="searchButton">Buscar</button>
+  </header>
 
-    <div id="root">
-        <!-- aqui se agrega lo que hagamos en js -->
-    </div>
-    <script src="paginas/conexion.js"></script>
-    <script src="paginas/home.js"></script>
-    <script src="paginas/detalle.js"></script>
-    <script src="paginas/favoritos.js"></script>
-    <script src="paginas/informativa.js"></script>
-    <script src="paginas/capturados.js"></script>
+  <main>
+    <section id="pokemonInfo" class="card">
+      <h2>Información del Pokémon</h2>
+      <div id="pokemonDisplay" class="pokemon-display">
+        <p>Busca un Pokémon para ver su información</p>
+      </div>
+    </section>
+  </main>
 
+  <footer>
+    <p>Desarrollado con ❤️ por 1014739596 · Datos de <a href="https://pokeapi.co/" target="_blank">PokeAPI</a></p>
+  </footer>
 
-    <script>
-
-        document.addEventListener("DOMContentLoaded",General)
-
-    </script>
-    
+  <script src="script.js"></script>
 </body>
 </html>
