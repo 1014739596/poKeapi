@@ -1,94 +1,98 @@
+var misNumeros = JSON.parse(localStorage.getItem("misNumeros")) || [];
 
-let misNumeros = JSON.parse(localStorage.getItem("misNumeros")) || [];
+function Aleatorios(){
+    document.getElementById("nuevos").innerHTML = "";
+    console.log("----------------------------------")
+    let pokesAleatorios = "";
+    for (let i = 0; i < 4; i++) {
+        //let num = Math.floor(Math.random() * rango) + 1;
+        let num = Math.floor(Math.random() * pokemones.length) + 1;
 
-const totalPokes = 151;
+        pokesAleatorios += `
+            <div class="c-lista-pokemon c-un_aleatorio">
+                <p>${num}</p>
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${num}.png" alt="${pokemones[num - 1].name}" width="60" height="60">
+                <p>${pokemones[num - 1].name}</p>
+            </div>`;
 
-function Aleatorios() {
-  const nuevos = document.getElementById("nuevos");
-  nuevos.innerHTML = "";
-  console.log("Generando 4 nuevos pokémon aleatorios...");
 
-  for (let i = 0; i < 4; i++) {
-    const num = Math.floor(Math.random() * totalPokes) + 1;
+        misNumeros = JSON.parse(localStorage.getItem("misNumeros")) || [];
+        let existe = false;
+        for(let j = 0; j < misNumeros.length; j++){
+            if(misNumeros[j] === num){
+                existe = true;
+                break; 
+            }
+        }
 
-    // Mostrar en la sección de nuevos
-    const div = document.createElement("div");
-    div.classList.add("c-lista-pokemon", "c-un_aleatorio");
-    div.innerHTML = `
-      <p>#${num}</p>
-      <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${num}.png" 
-           alt="Pokémon ${num}" width="70" height="70">
-      <p>${"Pokémon " + num}</p>
-    `;
-    nuevos.appendChild(div);
-
-    // Si no existe en localStorage, lo agrega
-    if (!misNumeros.includes(num)) {
-      misNumeros.push(num);
-      localStorage.setItem("misNumeros", JSON.stringify(misNumeros));
+        if (!existe) {
+            misNumeros.push(num);
+            localStorage.setItem("misNumeros", JSON.stringify(misNumeros));
+            document.getElementById("c-unpoke-" + num).innerHTML = `
+            <div  onclick="Detalle('${num}')">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${num}.png" width="auto" height="45" loading="lazy" alt="${num}">
+                <p>${num}</p>
+            </div>`
+            document.getElementById("c-unpoke-" + num).classList.add("c-mios-pokemon")
+        }
     }
-  }
 
-  // Actualiza la vista
-  renderCapturados();
+    document.getElementById("nuevos").innerHTML += pokesAleatorios
+    document.getElementById("contador").innerHTML = `${misNumeros.length} / ${totalPokes}`;
 }
 
-// Función principal: renderiza TODOS los pokémon capturados
-function renderCapturados() {
-  const root = document.getElementById("root");
-  root.innerHTML = "";
 
-  // Contador
-  const contador = document.createElement("p");
-  contador.id = "contador";
-  contador.textContent = `${misNumeros.length} / ${totalPokes}`;
-  contador.classList.add("contador");
 
-  // Botón
-  const boton = document.createElement("button");
-  boton.textContent = "4 nuevos";
-  boton.classList.add("btn-nuevos");
-  boton.addEventListener("click", Aleatorios);
 
-  // Sección de nuevos
-  const nuevos = document.createElement("section");
-  nuevos.classList.add("c-lista");
-  nuevos.id = "nuevos";
 
-  // Sección de álbum completo
-  const seccionCapturados = document.createElement("section");
-  seccionCapturados.classList.add("c-lista", "c-album");
+function Capturados(){
+    document.getElementById("root").innerHTML = ""
 
-  // Releer capturados (por si se actualizaron)
-  misNumeros = JSON.parse(localStorage.getItem("misNumeros")) || [];
+    //crear aleatorios
+    const capturaAleatorea = document.createElement("section");
+    capturaAleatorea.classList.add("c-lista");
+    capturaAleatorea.id = "nuevos"
 
-  // Mostrar todos los Pokémon capturados
-  if (misNumeros.length === 0) {
-    seccionCapturados.innerHTML = `
-      <div style="text-align:center; width:100%; padding:20px;">
-        <p>Aún no has capturado ningún Pokémon</p>
-      </div>
-    `;
-  } else {
-    misNumeros.forEach((num) => {
-      const div = document.createElement("div");
-      div.classList.add("c-unpoke", "c-mios-pokemon");
-      div.onclick = () => Detalle(num);
-      div.innerHTML = `
-        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${num}.png"
-             width="auto" height="60" loading="lazy" alt="${num}">
-        <p>#${num}</p>
-      `;
-      seccionCapturados.appendChild(div);
+    //crear boton d aleatorios
+    const boton = document.createElement("button");
+    boton.textContent = "4 nuevos"
+    // Agregar el evento click para generar 4 nuevos pokes
+    boton.addEventListener("click", () => {
+        Aleatorios(); 
     });
-  }
 
-  // Agregar todo al DOM
-  root.appendChild(contador);
-  root.appendChild(boton);
-  root.appendChild(nuevos);
-  root.appendChild(seccionCapturados);
+
+    //crear album
+    const seccioncapturados = document.createElement("section");
+    seccioncapturados.classList.add("c-lista");
+
+    let misPokes = "";
+    for (let i = 1; i <= totalPokes; i++) {
+        if(misNumeros.includes(i)){
+            misPokes += `
+            <div class="c-unpoke c-mios-pokemon poke-${i}" onclick="Detalle('${i}')">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${i}.png" width="auto" height="45" loading="lazy" alt="${i}">
+                <p>${i}</p>
+            </div>`;
+        }else{
+            misPokes += `
+            <div class="c-unpoke" id="c-unpoke-${i}">
+                <p>${i}</p>
+            </div>
+            `
+        }
+        
+    }
+    seccioncapturados.innerHTML = misPokes;
+
+    //rangos y capturados
+    let contador = document.createElement("p");
+    contador.textContent = `${misNumeros.length} / ${totalPokes}`;
+    contador.id = "contador"
+
+    //añadir al elemento
+    document.getElementById("root").appendChild(contador)
+    document.getElementById("root").appendChild(boton)
+    document.getElementById("root").appendChild(capturaAleatorea)
+    document.getElementById("root").appendChild(seccioncapturados)
 }
-
-// Autoejecutar al cargar la página
-document.addEventListener("DOMContentLoaded", renderCapturados);
