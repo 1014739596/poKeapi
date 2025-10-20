@@ -1,139 +1,183 @@
-/* -------------------- RESET GENERAL -------------------- */
+/* ==========================
+   RESET Y VARIABLES
+========================== */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* -------------------- VARIABLES -------------------- */
 :root {
-  --color-bg: #f8f9fa;
+  --color-primary: #e63946;
+  --color-secondary: #ffcb05;
+  --color-bg: #f6f8fa;
   --color-card: #ffffff;
-  --color-primary: #ff1c1c;
-  --color-secondary: #ffd700;
-  --color-text: #333;
-  --color-border: #ddd;
-  --shadow: 0 4px 10px rgba(0,0,0,0.1);
+  --color-text: #222;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   --radius: 12px;
-  --transition: 0.3s ease;
-  --font-main: 'Segoe UI', Tahoma, sans-serif;
+  --transition: all 0.3s ease;
+  --font-main: 'Poppins', 'Segoe UI', sans-serif;
 }
 
-/* -------------------- ESTRUCTURA BASE -------------------- */
+/* ==========================
+   ESTILO GENERAL
+========================== */
 body {
   font-family: var(--font-main);
   background-color: var(--color-bg);
   color: var(--color-text);
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-height: 100vh;
 }
 
+/* ==========================
+   ENCABEZADO / NAVBAR
+========================== */
 header {
-  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
-  color: white;
-  text-align: center;
   width: 100%;
-  padding: 20px;
+  text-align: center;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+  color: #fff;
+  padding: 25px 15px;
   box-shadow: var(--shadow);
 }
 
 header h1 {
   font-size: 2rem;
+  letter-spacing: 1px;
   margin-bottom: 10px;
 }
 
-header input {
-  padding: 10px;
+header input[type="text"] {
+  padding: 10px 15px;
   border: none;
   border-radius: var(--radius);
   outline: none;
   width: 60%;
-  max-width: 300px;
-  margin-right: 10px;
+  max-width: 280px;
+  margin-right: 8px;
+  font-size: 1rem;
+  transition: var(--transition);
+}
+
+header input[type="text"]:focus {
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.5);
 }
 
 header button {
-  background: white;
+  background-color: #fff;
   color: var(--color-primary);
   border: none;
-  padding: 10px 20px;
+  padding: 10px 18px;
   border-radius: var(--radius);
   cursor: pointer;
-  font-weight: bold;
+  font-weight: 600;
   transition: var(--transition);
 }
 
 header button:hover {
-  background: var(--color-secondary);
-  color: var(--color-text);
+  background-color: var(--color-secondary);
+  color: #222;
+  transform: scale(1.05);
 }
 
+/* ==========================
+   CONTENEDOR PRINCIPAL
+========================== */
 main {
   flex: 1;
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  width: 100%;
   padding: 40px 20px;
+  width: 100%;
 }
 
-/* -------------------- TARJETA DE POKÉMON -------------------- */
+/* ==========================
+   TARJETA POKÉMON
+========================== */
 .card {
-  background-color: var(--color-card);
+  background: var(--color-card);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
-  padding: 20px;
+  padding: 25px;
+  max-width: 480px;
   width: 100%;
-  max-width: 500px;
   text-align: center;
   transition: var(--transition);
+  position: relative;
 }
 
 .card:hover {
-  transform: translateY(-3px);
+  transform: translateY(-5px);
+}
+
+.card h2 {
+  font-size: 1.6rem;
+  margin-bottom: 15px;
+  color: var(--color-primary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.pokemon-display {
+  margin-top: 20px;
 }
 
 .pokemon-display img {
-  width: 150px;
-  height: 150px;
+  width: 160px;
+  height: 160px;
   object-fit: contain;
-  margin: 20px 0;
+  filter: drop-shadow(0 5px 8px rgba(0, 0, 0, 0.2));
+  transition: var(--transition);
+}
+
+.pokemon-display img:hover {
+  transform: scale(1.1);
 }
 
 .pokemon-display h3 {
   font-size: 1.4rem;
-  margin-bottom: 10px;
+  margin: 12px 0;
+  color: var(--color-primary);
+  text-transform: capitalize;
 }
 
 .pokemon-display p {
-  margin: 5px 0;
+  margin: 6px 0;
+  font-size: 1rem;
 }
 
-/* -------------------- FOOTER -------------------- */
+/* ==========================
+   FOOTER
+========================== */
 footer {
   background-color: var(--color-primary);
-  color: white;
-  width: 100%;
+  color: #fff;
   text-align: center;
+  width: 100%;
   padding: 15px;
   font-size: 0.9rem;
+  letter-spacing: 0.5px;
 }
 
 footer a {
   color: var(--color-secondary);
-  text-decoration: none;
   font-weight: bold;
+  text-decoration: none;
 }
 
 footer a:hover {
   text-decoration: underline;
 }
 
-/* -------------------- RESPONSIVE -------------------- */
+/* ==========================
+   RESPONSIVE DESIGN
+========================== */
 @media (max-width: 600px) {
-  header input {
+  header input[type="text"] {
     width: 100%;
     margin-bottom: 10px;
   }
@@ -144,5 +188,14 @@ footer a:hover {
 
   main {
     padding: 20px;
+  }
+
+  .card {
+    padding: 20px;
+  }
+
+  .pokemon-display img {
+    width: 130px;
+    height: 130px;
   }
 }
