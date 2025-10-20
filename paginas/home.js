@@ -1,21 +1,4 @@
-function buscadorfuncion(sza){
-    if(sza.length >= 3){
-        const filtrados = [];
-        for (let i = 0; i < pokemones.length; i++) {
-            const nombre = pokemones[i].name.toLowerCase();
-            if (nombre.includes(sza.toLowerCase())) {
-                filtrados.push(pokemones[i]);
-            }
-        }
-        let listaHTML = generarLista(filtrados)
-        document.getElementById("la-lista").innerHTML = listaHTML;
-    }else{
-        let listaHTML = generarLista(pokemones)
-        document.getElementById("la-lista").innerHTML = listaHTML;
-    }
-}
-
-function generarLista(arraypokemones) {
+function GenerarLista(arraypokemones){
     let listaHTML = "";
     for (let i = 0; i < arraypokemones.length; i++) {
         let id = arraypokemones[i].url.split("/")[6];
@@ -30,7 +13,21 @@ function generarLista(arraypokemones) {
     return listaHTML;
 }
 
-function Home(filtro){
+function buscadorfuncion(asa){
+    if(asa.length >= 3){
+        const filtrados = [];
+        for (let i = 0; i < pokemones.length; i++) {
+            const nombre = pokemones[i].name.toLowerCase();
+            if (nombre.includes(asa.toLowerCase())) {
+                filtrados.push(pokemones[i]);
+            }
+        }
+        let listapokes = GenerarLista(filtrados)
+        document.getElementById("la-lista").innerHTML = listapokes;
+    }
+}
+
+function Home(){
 
     var root = document.getElementById("root");
     root.innerHTML = ""
@@ -43,15 +40,13 @@ function Home(filtro){
             buscadorfuncion(buscador.value);
     });
 
-    //contenedor filtro
+    // filtro
     const tipos = [
         "normal", "fighting", "flying", "poison", "ground", "rock", "bug",
         "ghost", "steel", "fire", "water", "grass", "electric", "psychic", "ice",
         "dragon", "dark", "fairy", "stellar", "unknown"
     ];
-
-    const contenedorFiltro = document.createElement("div");
-    contenedorFiltro.classList.add("tipos-container"); 
+    const filtro = document.createElement("div");
 
     for (let i = 0; i < tipos.length; i++) {
         const btn = document.createElement("button");
@@ -63,19 +58,18 @@ function Home(filtro){
         });
 
         // Agregar el botón al contenedor
-        contenedorFiltro.appendChild(btn);
+        filtro.appendChild(btn);
     }
+    
+    //listas
+    const listapokes = GenerarLista(pokemones);
+    var contenedorLista = document.createElement("section")
+    contenedorLista.classList.add("c-lista");
+    contenedorLista.id = "la-lista"
+    contenedorLista.innerHTML = listapokes;
+    //agregar
 
-
-    //add contenedor lista
-    const listaHTML = generarLista(pokemones);
-    var contenedorLista = document.createElement("div");
-    contenedorLista.classList.add("c-contenedor-lista"); 
-    contenedorLista.id = "la-lista"; 
-    contenedorLista.innerHTML = listaHTML;
-
-    //agregar contenedores
-    root.appendChild(buscador);
-    root.appendChild(contenedorFiltro);
-    root.appendChild(contenedorLista);
+    document.getElementById("root").appendChild(buscador)
+    document.getElementById("root").appendChild(filtro)
+    document.getElementById("root").appendChild(contenedorLista)
 }
