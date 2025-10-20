@@ -45,7 +45,7 @@ function Aleatorios(){
 
 
 
-function Capturados(){
+function capturados(){
     document.getElementById("root").innerHTML = ""
 
     //crear aleatorios
