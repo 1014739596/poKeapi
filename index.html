@@ -1,34 +1,44 @@
-<html lang="en">
+<!DOCTYPE html>
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PokeAPI - Colección Pokémon</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="https://raw.githubusercontent.com/PokeAPI/media/master/logo/pokeapi_256.png">
 </head>
+
 <body>
-    <nav>
-        <button onclick="Home()">Home</button>
-        <button onclick="Informativa()">Informativa</button>
-        <button onclick="Capturados()">Capturados</button>
-        <button onclick="Favoritos()">Favoritos</button>
-    </nav>
-
-    <div id="root">
-        <!-- aqui se agrega lo que hagamos en js -->
+  <!-- Barra de navegación -->
+  <nav class="navbar">
+    <div class="nav-logo">
+      <img src="https://raw.githubusercontent.com/PokeAPI/media/master/logo/pokeapi_256.png" alt="Logo Pokémon">
+      <h1>PokeDex</h1>
     </div>
-    <script src="paginas/conexion.js"></script>
-    <script src="paginas/home.js"></script>
-    <script src="paginas/detalle.js"></script>
-    <script src="paginas/favoritos.js"></script>
-    <script src="paginas/informativa.js"></script>
-    <script src="paginas/capturados.js"></script>
 
+    <div class="nav-buttons">
+      <button onclick="Home()">Home</button>
+      <button onclick="Informativa()">Informativa</button>
+      <button onclick="Capturados()">Capturados</button>
+      <button onclick="Favoritos()">Favoritos</button>
+    </div>
+  </nav>
 
-    <script>
+  <!-- Contenedor principal -->
+  <main id="root">
+    <!-- Aquí se agrega el contenido dinámico -->
+  </main>
 
-        document.addEventListener("DOMContentLoaded",General)
+  <!-- Scripts -->
+  <script src="paginas/conexion.js"></script>
+  <script src="paginas/home.js"></script>
+  <script src="paginas/detalle.js"></script>
+  <script src="paginas/favoritos.js"></script>
+  <script src="paginas/informativa.js"></script>
+  <script src="paginas/capturados.js"></script>
 
-    </script>
-    
+  <script>
+    document.addEventListener("DOMContentLoaded", General);
+  </script>
 </body>
 </html>
